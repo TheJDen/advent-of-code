@@ -1,6 +1,3 @@
-from itertools import accumulate
-from collections import Counter, defaultdict
-
 import string
 
 NOT_SYMBOL = string.digits + '.'
