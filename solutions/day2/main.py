@@ -1,5 +1,6 @@
 from collections import Counter
-from itertools import accumulate
+from functools import reduce
+
 RED = 12
 GREEN = 13
 BLUE = 14
@@ -15,10 +16,10 @@ def part1(rounds):
         
 
 def part2(rounds):
-    reds = list(accumulate((int(count_str) for round in rounds for count_str, color in round if color == "red"), max))
-    greens = list(accumulate((int(count_str) for round in rounds for count_str, color in round if color == "green"), max))
-    blues = list(accumulate((int(count_str) for round in rounds for count_str, color in round if color == "blue"), max))
-    return reds[-1] * greens[-1] * blues[-1]
+    highest_red = reduce(max, (int(count_str) for round in rounds for count_str, color in round if color == "red"))
+    highest_green = reduce(max, (int(count_str) for round in rounds for count_str, color in round if color == "green"))
+    highest_blue = reduce(max, (int(count_str) for round in rounds for count_str, color in round if color == "blue"))
+    return highest_red * highest_green * highest_blue
 
 def main():
     total = 0
