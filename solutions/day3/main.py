@@ -12,7 +12,7 @@ def part(lines, i, j):
     return (i, start, end)
 
 def get_unique_parts(lines, is_symbol: callable):
-    parts = set()
+    parts = []
     for i, row in enumerate(lines):
         for j, char in enumerate(row):
             close_parts = set()
@@ -26,8 +26,8 @@ def get_unique_parts(lines, is_symbol: callable):
                 if lines[i + di][j + dj] not in string.digits:
                     continue
                 close_parts.add(part(lines, i + di, j + dj))
-            parts.update(close_parts)
-    return [lines[i][start: end] for i, start, end in parts]
+            parts.append(close_parts)
+    return [[lines[i][start: end] for i, start, end in part] for part in parts]
     
 
 def get_gear_parts(lines, is_symbol: callable):
@@ -49,8 +49,8 @@ def get_gear_parts(lines, is_symbol: callable):
                     gears.append(close_parts)
     return [[lines[i][start: end] for i, start, end in parts] for parts in gears]
     
-def part1(part_num_strs):
-    return sum(int(part_num_str) for part_num_str in part_num_strs)
+def part1(parts):
+    return sum(int(part_num_str) for part in parts for part_num_str in part)
 
 def part2(gears):
     return sum(int(part1) * int(part2) for part1, part2 in gears)
