@@ -9,15 +9,16 @@ import operator
 
 def main():
     with open("input.txt") as f:
-        pattern_text, design_text = f.read().split("\n\n")
-        patterns = set(pattern_text.rstrip().split(", "))
-        designs = design_text.rstrip().split("\n")
+        pattern_text, designs_text = f.read().rstrip().split("\n\n")
+        patterns = pattern_text.split(", ")
+        designs = designs_text.split("\n")
     print(part1(patterns, designs))
     print(part2(patterns, designs))
 
 def part1(patterns, designs):
+    patterns = set(patterns)
     @cache
-    def is_possible(candidate):
+    def is_possible(candidate) -> bool:
         if not candidate:
             return True
         for i in range(len(candidate)):
@@ -31,8 +32,9 @@ def part1(patterns, designs):
     return sum(is_possible(design) for design in designs)
 
 def part2(patterns, designs):
+    patterns = set(patterns)
     @cache
-    def num_ways(candidate):
+    def num_ways(candidate) -> int:
         if not candidate:
             return 1
         total = 0
@@ -45,6 +47,5 @@ def part2(patterns, designs):
         return total
     return sum(num_ways(design) for design in designs)
 
-    
 if __name__ == "__main__":
     main()
