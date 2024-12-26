@@ -1,0 +1,17 @@
+c -> 0
+z00 -> x00 XOR y00 XOR c
+c00 -> (x00 AND y00) OR (c AND (x00 XOR y00))
+
+z18 -> x18 XOR y18 XOR c17
+z18 and wss swapped
+z08 and mvb swapped
+z23 and bmn swapped:wq
+
+z01 -> x01 XOR y01 XOR c00
+c01 -> (x01 AND y01) OR (c00 AND (x01 XOR y01))
+
+z01 -> x02 XOR y02 XOR c01
+c01 -> (x02 AND y02) OR (c01 AND (x02 XOR y02))
+
+z44 -> x44 XOR y44 XOR c43
+z45 -> (x44 AND y44) OR (c43 AND (x44 XOR y44))
